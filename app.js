@@ -5,6 +5,7 @@ const logger = require('./utils/winston').logger('app.js');
 
 const app = express();
 // eslint-disable-next-line import/order
+require('dotenv').config();
 const db = require('./db/db');
 const { errorHandler } = require('./utils/errorHandler');
 
