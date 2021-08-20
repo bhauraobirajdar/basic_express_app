@@ -12,6 +12,12 @@
       "git add"
     ]
   },
+
+  "husky": {
+    "husky": {
+      "pre-commit": "echo pre-commit\"
+    }
+  },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -29,9 +35,5 @@
     "husky": "^7.0.1"
   },
   
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && npm run eslint"
-    }
-  }
+  
 }
