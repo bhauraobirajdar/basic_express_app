@@ -15,7 +15,7 @@
 
   "husky": {
     "husky": {
-      "pre-commit": "echo pre-commit"
+      "pre-commit": "lint-stagged"
     }
   },
   "dependencies": {
@@ -33,7 +33,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.0",
     "husky": "^7.0.1"
-  },
+  }
   
   
 }
