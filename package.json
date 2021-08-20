@@ -15,7 +15,7 @@
 
   "husky": {
     "husky": {
-      "pre-commit": "echo pre-commit\"
+      "pre-commit": "echo pre-commit"
     }
   },
   "dependencies": {
