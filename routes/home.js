@@ -4,7 +4,7 @@ const router = express.Router();
 
 const poolCon = require('../db/db');
 
-const logger = require('../utils/winston').logger('home.js');
+const logger = require('../helpers/winston').logger('home.js');
 
 const getHome = (async (req, res, next) => {
   try {

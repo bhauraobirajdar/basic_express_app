@@ -1,13 +1,13 @@
 const createError = require("http-errors");
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const logger = require('./utils/winston').logger('app.js');
+const logger = require('./helpers/winston').logger('app.js');
 
 const app = express();
 // eslint-disable-next-line import/order
 require('dotenv').config();
 const db = require('./db/db');
-const { errorHandler } = require('./utils/errorHandler');
+const { errorHandler } = require('./helpers/errorHandler');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -17,6 +17,7 @@ app.use('/api', require('./routes/index'));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
+  console.log("In 404********************")
   next(createError(404));
 });
 
