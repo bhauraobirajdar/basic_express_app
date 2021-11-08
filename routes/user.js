@@ -11,6 +11,7 @@ const queryies = require('../db/query');
 
 const getUsers = (async (req, res, next) => {
   try {
+    console.log('testtttttt')
     const userList = await poolCon.query(queryies.getUsers);
     sendResponse(res, 200, userList.rows);
   } catch (err) {

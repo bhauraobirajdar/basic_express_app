@@ -6,15 +6,22 @@ const poolCon = require('../db/db');
 
 const logger = require('../helpers/winston').logger('home.js');
 
-const getHome = (async (req, res, next) => {
+const User = require('../models/user');
+
+const userModel = new User.User();
+
+const getHome = (async (req, res) => {
   try {
-    const result = await poolCon.query('select * from test_schema.emp');
-    res.json(result.rows);
+       const result = await userModel.addUser(); //
+       console.log("resssss ",result)
+    //return result;
+    res.json(result);
   } catch (err) {
-    // console.log(err)
+    console.log('in errorrrrrrrrrr');
     // console.log("error in gwt home", err.stack)
     logger.error(err.message);
-    next(err);
+    return 'error';
+    // next(err);
   }
 });
 
