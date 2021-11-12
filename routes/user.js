@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-syntax */
-import { sendResponse, validationResponse } from '../helpers/utils';
+const { sendResponse, validationResponse } = require('../helpers/utils');
 
 const express = require('express');
 

@@ -1,5 +1,4 @@
-import { required } from 'joi';
-import { sendResponse, validationResponse } from '../helpers/utils';
+const { sendResponse, validationResponse } = require('../helpers/utils');
 
 const express = require('express');
 const Joi = require('joi');

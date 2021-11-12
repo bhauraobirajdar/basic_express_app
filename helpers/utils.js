@@ -1,8 +1,9 @@
-export function sendResponse(res, statusCode = 200, message) {
+
+module.exports.sendResponse = function (res, statusCode = 200, message) {
   res.status(statusCode).json(message);
 }
 
-export function validationResponse(error) {
+module.exports.validationResponse = function(error) {
   const errMsg = [];
 
   // eslint-disable-next-line no-restricted-syntax
