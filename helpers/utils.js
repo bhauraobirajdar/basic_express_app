@@ -1,8 +1,11 @@
-export function sendResponse(res, statusCode = 200, message) {
-  res.status(statusCode).json(message);
-}
+const poolCon = require("../db/db");
+const jwt = require("jsonwebtoken");
 
-export function validationResponse(error) {
+const sendResponse = (res, statusCode = 200, message) => {
+  res.status(statusCode).json(message);
+};
+
+const validationResponse = (error) => {
   const errMsg = [];
 
   // eslint-disable-next-line no-restricted-syntax
@@ -10,4 +13,30 @@ export function validationResponse(error) {
     errMsg.push(err.message);
   }
   return errMsg;
-}
+};
+
+const executeQuery = async (query, data) => {
+  if (data) {
+    return await poolCon.query(query, data);
+  }
+  return await poolCon.query(query);
+};
+
+const createJWT = (userData) => {
+  return jwt.sign(
+    {
+      data: userData,
+    },
+    process.env.SECREAT,
+    {
+      expiresIn: "1h",
+    }
+  );
+};
+
+module.exports = {
+  sendResponse,
+  validationResponse,
+  executeQuery,
+  createJWT,
+};
