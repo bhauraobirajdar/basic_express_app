@@ -1,7 +1,7 @@
 const joi = require('joi')
 const bcrypt = require('bcrypt')
 const sql = require('../db/query')
-const logger = require('../helpers/winston').logger('home.js')
+const logger = require('../helpers/winston').logger('login.js')
 const poolCon = require('../db/db')
 const {
   sendResponse,
