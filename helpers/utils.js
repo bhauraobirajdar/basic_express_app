@@ -1,14 +1,46 @@
+const poolCon = require('../db/db')
+const jwt = require('jsonwebtoken')
 
-module.exports.sendResponse = function (res, statusCode = 200, message) {
-  res.status(statusCode).json(message);
+const sendResponse = (res, statusCode = 200, message) => {
+  res.status(statusCode).json(message)
 }
 
-module.exports.validationResponse = function(error) {
-  const errMsg = [];
+const validationResponse = (error) => {
+  const errMsg = []
 
   // eslint-disable-next-line no-restricted-syntax
   for (const err of error.details) {
-    errMsg.push(err.message);
+    errMsg.push(err.message)
   }
-  return errMsg;
+  return errMsg
+}
+
+const executeQuery = async (query, data) => {
+  try {
+    if (data) {
+      return await poolCon.query(query, data)
+    }
+    return await poolCon.query(query)
+  } catch (e) {
+    return e
+  }
+}
+
+const createJWT = (userData) => {
+  return jwt.sign(
+    {
+      data: userData,
+    },
+    process.env.SECREAT,
+    {
+      expiresIn: '1h',
+    }
+  )
+}
+
+module.exports = {
+  sendResponse,
+  validationResponse,
+  executeQuery,
+  createJWT,
 }
