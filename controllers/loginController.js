@@ -14,6 +14,7 @@ const {
   USER_SUCCESS,
   PASSWORD_NOT_MATCHED,
 } = require('../Utils/constants')
+const { getUser } = require('../services/loginService')
 
 const login = async (req, res, next) => {
   try {
@@ -26,10 +27,8 @@ const login = async (req, res, next) => {
       const errMsg = validationResponse(err)
       sendResponse(res, 422, { error: errMsg })
     } else {
-      const userExsist = await poolCon.query(sql.getUserByUserName, [
-        req.body.userName,
-      ])
-      if (userExsist.rows.length > 0) {
+      const userData = await getUser([req.body.userName])
+      if (userData.rows.length > 0) {
         sendResponse(res, 200, { msg: USER_EXISTS })
       } else {
         const encryptPass = await bcrypt.hash(req.body.password, 10)
@@ -55,9 +54,7 @@ const verifyLogin = async (req, res, next) => {
       const errMsg = validationResponse(err)
       res.status(422).json({ error: errMsg })
     } else {
-      const userData = await executeQuery(sql.getUserByUserName, [
-        req.body.userName,
-      ])
+      const userData = await getUser([req.body.userName])
       const checkPass = await bcrypt.compare(
         req.body.password,
         userData.rows[0].password
