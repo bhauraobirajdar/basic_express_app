@@ -8,5 +8,4 @@ router.post('/verify', verifyLogin)
 
 module.exports = {
   router,
-  login,
 }

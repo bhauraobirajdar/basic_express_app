@@ -7,5 +7,4 @@ router.get('/', getAllEmployeeData)
 
 module.exports = {
   router,
-  getAllEmployeeData,
 }

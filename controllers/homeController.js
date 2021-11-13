@@ -1,11 +1,9 @@
 const logger = require('../helpers/winston').logger('home.js')
-
-const sql = require('../db/query')
-const { executeQuery } = require('../helpers/utils')
+const { getAllEmployee } = require('../services/homeService')
 
 const getAllEmployeeData = async (req, res, next) => {
   try {
-    const result = await executeQuery(sql.getAllEmployee)
+    const result = await getAllEmployee()
     res.json(result.rows)
   } catch (err) {
     logger.error(err.message)
