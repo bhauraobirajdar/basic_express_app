@@ -1,5 +1,5 @@
 /* eslint-disable new-cap */
-const pool = require('pg').Pool;
+const pool = require('pg').Pool
 
 const poolCon = new pool({
   user: process.env.PGUSER,
@@ -7,6 +7,6 @@ const poolCon = new pool({
   password: process.PGPASSWORD,
   port: process.env.PGPORT,
   host: process.env.PGHOST,
-});
+})
 
-module.exports = poolCon;
+module.exports = poolCon
